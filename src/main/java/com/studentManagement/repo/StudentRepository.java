@@ -1,8 +1,10 @@
 package com.studentManagement.repo;
 
 import com.studentManagement.entites.Student;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface StudentRepository extends CrudRepository<Student, Integer> {
+import java.util.List;
+
+public interface StudentRepository extends JpaRepository<Student, Integer> {
 
 }
