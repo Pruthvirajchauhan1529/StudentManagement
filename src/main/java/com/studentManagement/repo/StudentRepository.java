@@ -1,6 +1,7 @@
 package com.studentManagement.repo;
 
 import com.studentManagement.entites.Student;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
@@ -20,6 +21,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     List<Student> findByAgeBetween(Long age, Long age1);
     List<Student> findByNameLike(String name);
     List<Student> findByRollNumberIn(List<Integer> rollNumber);
+
 
 
 //    List<Student> findByAddressContains(String address);

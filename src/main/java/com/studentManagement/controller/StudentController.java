@@ -3,9 +3,7 @@ package com.studentManagement.controller;
 
 import com.studentManagement.dto.StudentDTO;
 import com.studentManagement.entites.Student;
-import com.studentManagement.repo.StudentRepository;
 import com.studentManagement.services.StudentService;
-import com.studentManagement.services.serviceimp.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,5 +41,10 @@ public class StudentController {
     @PostMapping("/search")
     public List<Student> search(@RequestBody StudentDTO studentDTO){
         return studentService.search(studentDTO);
+    }
+    @GetMapping("/sort/{field1},{field2}")
+    public List<Student> sortByName(@PathVariable String field1, @PathVariable String field2){
+        return studentService.sortByField(field1,field2);
+        //return studentService.sortByField();
     }
 }

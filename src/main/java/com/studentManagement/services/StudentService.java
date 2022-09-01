@@ -16,6 +16,9 @@ public interface StudentService {
      //-----------------------------------------------------------------------------------------------
 
     List<Student> search(StudentDTO studentDTO);
+    List<Student> sortByField(String sort1, String sort2);
+
+
 
 //      List<Student> findByName(String name);
 //    List<Student> findByNameAndMark(String name, Double mark);
