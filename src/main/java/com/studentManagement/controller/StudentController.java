@@ -1,6 +1,7 @@
 package com.studentManagement.controller;
 
 
+import com.studentManagement.dto.StudentDTO;
 import com.studentManagement.entites.Student;
 import com.studentManagement.repo.StudentRepository;
 import com.studentManagement.services.StudentService;
@@ -33,9 +34,14 @@ public class StudentController {
          Student student1 = studentService.save(student);
          return student1;
     }
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public void deleteStudent(@RequestParam Integer id){
         studentService.deleteStudent(id);
     }
 
+//------------------------------------------------------------------------------------------------------------
+    @PostMapping("/search")
+    public List<Student> search(@RequestBody StudentDTO studentDTO){
+        return studentService.search(studentDTO);
+    }
 }
