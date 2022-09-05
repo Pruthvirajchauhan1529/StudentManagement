@@ -33,7 +33,7 @@ public class StudentController {
          return student1;
     }
     @DeleteMapping("/{id}")
-    public void deleteStudent(@RequestParam Integer id){
+    public void deleteStudent(@PathVariable Integer id){
         studentService.deleteStudent(id);
     }
 
@@ -42,9 +42,44 @@ public class StudentController {
     public List<Student> search(@RequestBody StudentDTO studentDTO){
         return studentService.search(studentDTO);
     }
-    @GetMapping("/sort/{field1},{field2}")
-    public List<Student> sortByName(@PathVariable String field1, @PathVariable String field2){
+    @GetMapping("/sort")
+    public List<Student> sortByName(@RequestParam String field1, @RequestParam String field2){
         return studentService.sortByField(field1,field2);
         //return studentService.sortByField();
+    }
+//----------------------------------------JPQL--------------------------------------------------------------
+    @GetMapping("/jpql")
+    public List<Student> allStudent(){
+        return studentService.findAllStudent();
+    }
+    @GetMapping("/jpql2")
+    public List<Object[]> someStudentData(){
+        return studentService.findAllStudentPartialData();
+    }
+    @GetMapping("/jpql3")
+    public List<Student> findByStudentName(@RequestParam String name){
+        return studentService.findAllStudentByName(name);
+    }
+    @GetMapping("/jpql4")
+    public List<Student> findStudentMarkBetween(@RequestParam Double mark1, Double mark2){
+        return studentService.findByMarkBetween(mark1,mark2);
+    }
+    @DeleteMapping("/jpql5/{roll}")
+    public void deleteByRollNumber(@PathVariable Integer roll){
+        studentService.deleteByRollNumber(roll);
+    }
+    @GetMapping("/jpql6/")
+    public List<Student> findPageAndSize(@RequestParam Integer page, Integer size, String name){
+        return studentService.findPageAndSize(page,size,name);
+    }
+
+//---------------------------------------Native------------------------------------------------------------------------
+    @GetMapping("/NQ")
+    public List<Student> findAllStudentNQ(){
+        return studentService.findAllStudentNQ();
+    }
+    @GetMapping("/NQ/name")
+    public List<Student> findByNameNQ(@RequestParam String name){
+        return studentService.findByNameNQ(name);
     }
 }

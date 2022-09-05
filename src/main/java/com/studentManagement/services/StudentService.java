@@ -13,17 +13,27 @@ public interface StudentService {
      Student updateStudent(Student student);
      void deleteStudent(Integer id);
 
-     //-----------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------
 
     List<Student> search(StudentDTO studentDTO);
     List<Student> sortByField(String sort1, String sort2);
 
-
-
+//-----------------------------------------------------------------------------------------------------------------
 //      List<Student> findByName(String name);
 //    List<Student> findByNameAndMark(String name, Double mark);
 //    List<Student> findByAddressContains(String address);
 //    List<Student> findByGreaterThan(Double mark);
 //    List<Student> findByMarkBetween(Double mark1, Double mark2);
+//--------------------------------------JPQL------------------------------------------------------------------
 
+    List<Student> findAllStudent();
+    List<Object[]> findAllStudentPartialData();
+    List<Student> findAllStudentByName(String name);
+    List<Student> findByMarkBetween(Double mark1, Double mark2);
+    void deleteByRollNumber(Integer roll);
+    List<Student> findPageAndSize(Integer page, Integer size, String name);
+
+//------------------------------------------Native--------------------------------------------------------------------
+    List<Student> findAllStudentNQ();
+    List<Student> findByNameNQ(String name);
 }

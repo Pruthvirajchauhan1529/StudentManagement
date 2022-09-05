@@ -7,6 +7,7 @@ import com.studentManagement.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -114,5 +115,45 @@ public class StudentServiceImpl implements StudentService {
        return studentRepository.findAll(Sort.by(Sort.Direction.DESC,sort1,sort2));
        //return studentRepository.findAll(Sort.by(Sort.Direction.DESC,field));
        // return studentRepository.findAll(Sort.by("name"));
+    }
+
+//----------------------------------------------------------------JPQL-------------------------------------------------
+    @Override
+    public List<Student> findAllStudent(){
+        return studentRepository.findAllStudent();
+    }
+    @Override
+    public List<Object[]> findAllStudentPartialData() {
+        return studentRepository.findAllStudentPartialData();
+    }
+
+    @Override
+    public List<Student> findAllStudentByName(String name) {
+        return studentRepository.findAllStudentByName(name);
+    }
+
+    @Override
+    public List<Student> findByMarkBetween(Double mark1, Double mark2) {
+        return studentRepository.findStudentMarkBetween(mark1, mark2);
+    }
+
+    @Override
+    public void deleteByRollNumber(Integer roll) {
+        studentRepository.deleteByRollNumber(roll);
+    }
+
+    @Override
+    public List<Student> findPageAndSize(Integer page, Integer size, String name) {
+        // return studentRepository.findAllStudents(PageRequest.of(page,size));
+        return studentRepository.findAllStudents(PageRequest.of(page, size, Sort.Direction.DESC, name));
+    }
+//---------------------------------------Native----------------------------------------------------------------------
+    @Override
+    public List<Student> findAllStudentNQ() {
+        return studentRepository.findAllStudentNQ();
+    }
+    @Override
+    public List<Student> findByNameNQ(String name) {
+        return studentRepository.findByNameNQ(name);
     }
 }
