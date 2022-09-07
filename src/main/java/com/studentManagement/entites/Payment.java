@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Payment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Double amount;
 }
