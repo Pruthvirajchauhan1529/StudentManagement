@@ -1,14 +1,14 @@
 package com.studentManagement.entites.entite;
 
-import com.studentManagement.entites.Subject;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Setter
 @Getter
@@ -24,12 +24,21 @@ public class Student01 {
     private Long age;
     private String email;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "st_id")
+    //@BatchSize(size = 5)
+    @Fetch(FetchMode.SELECT)
     private List<Address01> address01;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "st_id")
-    private List<Subject> subjects;
+    @Fetch(FetchMode.SELECT)
+    private List<Subject01> subjects;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   // @JoinColumn(name = "St_id")
+    private Standard standard;
+
+
 
 }

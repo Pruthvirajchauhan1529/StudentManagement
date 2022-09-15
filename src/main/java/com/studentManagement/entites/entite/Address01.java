@@ -1,11 +1,13 @@
 package com.studentManagement.entites.entite;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 @Getter
 @Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Address01 {
     @Id
@@ -18,9 +20,11 @@ public class Address01 {
     private String country;
     private String zipcode;
 
-//    @ManyToOne
-//    @JoinColumn(name = "st_id")
-//    private Student01 student01;
+    /*@ManyToOne()
+    @JoinColumn(name = "st_id")
+    private Student01 student01;*/
+
+
 //    @ManyToOne
 //    private Student01 student02;
 
